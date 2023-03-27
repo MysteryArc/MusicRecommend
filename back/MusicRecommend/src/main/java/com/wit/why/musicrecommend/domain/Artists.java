@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Artists {
-    private int cloudId;
+    private Integer cloudId;
     private String name;
     private String singer;
     private String picUrl;
     private String album;
     private String playUrl;
-    private int id;
+    private Integer id;
 }
