@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
+//音乐类
 public class Artists {
     private Integer cloudId;
     private String name;
