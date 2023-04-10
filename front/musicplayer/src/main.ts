@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import './style.css'
-import App from './App.vue'
 import ShowVue from './views/Show.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
-createApp(ShowVue).mount('#app')
+const app = createApp(ShowVue)
+app.use(ElementPlus)
+app.mount('#app')
