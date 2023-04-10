@@ -1,17 +1,16 @@
 package com.wit.why.musicrecommend.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wit.why.musicrecommend.domain.Artists;
 import com.wit.why.musicrecommend.service.IArtistsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/discover/song")
 public class ArtistsShowController {
 
@@ -20,7 +19,8 @@ public class ArtistsShowController {
 
     @GetMapping
     public List<Artists> getAll() {
-        return iArtistsService.list();
+        Page<Artists> page = iArtistsService.page(new Page<>(1, 10));
+        return page.getRecords();
     }
 
     @GetMapping("{id}")
