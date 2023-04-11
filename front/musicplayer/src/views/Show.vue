@@ -5,11 +5,26 @@ import { onMounted, ref } from 'vue';
 const musicdata = ref([]) 
 const src = ref("");
 const audioee = ref()
+const page = ref()
+const musictotal = ref(100)
+const currentpage = ref(1)
 
 async function getMusic() {
-    const resp = await axios.get('/discover/song')
+    const resp = await axios.get('/artists')
+    // console.log(resp.data)
+    musicdata.value = resp.data
+}
+
+async function getPage(current:number) {
+    const resp = await axios.get('/artists/' + current)
     console.log(resp.data)
     musicdata.value = resp.data
+}
+
+async function getMusicTotal() {
+    const resp = await axios.get('/artists/total')
+    // console.log(resp.data)
+    musictotal.value = resp.data
 }
 
 function playmusic(playid: number) {
@@ -23,6 +38,7 @@ function playmusic0(playid: number) {
 
 onMounted(() => {
     getMusic()
+    getMusicTotal()
 })
 </script>
 
@@ -41,7 +57,7 @@ onMounted(() => {
                     <el-table-column prop="name" label="Name" />
                     <el-table-column label="Picture">
                         <template #default="scope">
-                            <el-image :src="scope.row.picUrl" style="width: 200px; height: 200px;"/>
+                            <el-image :src="scope.row.picUrl" style="width: 150px; height: 150px;"/>
                         </template>
                     </el-table-column>
                     <el-table-column prop="singer" label="Singer" />
@@ -52,6 +68,14 @@ onMounted(() => {
                         </template>
                     </el-table-column>
                 </el-table>
+                <el-divider />
+                <el-pagination background 
+                    ref = 'page'
+                    layout="prev, pager, next" 
+                    :total="musictotal" 
+                    :page-size="10" 
+                    v-model:current-page="currentpage"
+                    @current-change="getPage(currentpage)"/>
             </div>
         </el-main>
         <el-footer>
