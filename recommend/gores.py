@@ -90,5 +90,6 @@ def main():
     # # 插入积极反馈
     # client.insert_feedbacks(likefeedback)
 
-    re = client.get_recommend("3", n=5)
+    #获取推荐
+    print(client.get_recommend("3", n=5))
 main()
