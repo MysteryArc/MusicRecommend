@@ -52,12 +52,12 @@ onMounted(() => {
         </el-header>
         <el-main>
             <div style="width: 100%;">
-                <el-table :data="musicdata" stripe style="width: 100%;">
+                <el-table :data="musicdata" stripe height="530" style="width: 100%;">
                     <el-table-column prop="cloudId" label="ID" />
                     <el-table-column prop="name" label="Name" />
                     <el-table-column label="Picture">
                         <template #default="scope">
-                            <el-image :src="scope.row.picUrl" style="width: 150px; height: 150px;"/>
+                            <el-image :src="scope.row.picUrl" style="width: 150px; height: 150px;" lazy/>
                         </template>
                     </el-table-column>
                     <el-table-column prop="singer" label="Singer" />
@@ -78,20 +78,14 @@ onMounted(() => {
                     @current-change="getPage(currentpage)"/>
             </div>
         </el-main>
-        <el-footer>
-            <div>
-                
-            </div>
-        </el-footer>
     </el-container>
-    
 </template>
 
 
 <style>
 .main{
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 </style>
