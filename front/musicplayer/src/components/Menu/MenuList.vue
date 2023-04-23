@@ -9,7 +9,7 @@ const menus = useMenu()
     <div class="layout-menulist" v-for="(item, i) in menus" :key="i">
         <div class="title">{{ item.name }}</div>
         <div class="menus" v-for="menu in item.menus" :key="menu.key">
-            <a>{{ menu.name }}</a>
+            <router-link :to="{name:menu.key}">{{ menu.name }}</router-link>
         </div>
     </div>
 </template>

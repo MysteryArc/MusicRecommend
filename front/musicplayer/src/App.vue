@@ -3,8 +3,10 @@ import Menu from "./components/Menu/MenuList.vue"
 </script>
 
 <template>
-  <el-container>
+  <!-- <el-container>
     <el-aside width="200px" >
+      <div>music</div>
+      <hr>
       <Menu></Menu>
     </el-aside>
     <el-container>
@@ -18,8 +20,54 @@ import Menu from "./components/Menu/MenuList.vue"
         Footer
       </el-footer>
     </el-container>
-  </el-container>
+  </el-container> -->
+
+  <div class="main-container">
+    <div class="menu">
+      <Menu/>
+    </div>
+
+    <div class="main">
+      <div class="header">
+        Header
+      </div>
+
+      <div class="content">
+        <RouterView/>
+      </div>
+
+      <div class="footer">
+        Footer
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.main-container{
+  height: 100vh;
+  display: flex;
+
+}
+.menu{
+  width: 200px;
+  background-color: #EBEEF5;
+}
+.main{
+  flex:1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.header{
+  height: 75px;
+}
+.footer {
+  height: 75px;
+}
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
 </style>
