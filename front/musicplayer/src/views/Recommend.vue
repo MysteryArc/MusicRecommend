@@ -7,7 +7,9 @@ import Banner from "../components/Banner/Banner.vue"
         <div class="title">推荐</div>
         <div class="today" style="margin-top: 10px;">
             <div class="hello">Hi xxx 今日为你推荐</div>
-            <Banner></Banner>
+            <div style="margin-right: 10px;">
+                <Banner></Banner>
+            </div>
         </div>
     </div>
     

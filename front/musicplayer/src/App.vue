@@ -1,27 +1,9 @@
 <script setup lang="ts">
 import Menu from "./components/Menu/MenuList.vue"
+import Header from "./components/Header/Header.vue"
 </script>
 
 <template>
-  <!-- <el-container>
-    <el-aside width="200px" >
-      <div>music</div>
-      <hr>
-      <Menu></Menu>
-    </el-aside>
-    <el-container>
-      <el-header style="background-color: brown;">
-        Header
-      </el-header>
-      <el-main>
-        <RouterView></RouterView>
-      </el-main>
-      <el-footer style="background-color: blue;">
-        Footer
-      </el-footer>
-    </el-container>
-  </el-container> -->
-
   <div class="main-container">
     <div class="menu">
       <Menu/>
@@ -29,7 +11,7 @@ import Menu from "./components/Menu/MenuList.vue"
 
     <div class="main">
       <div class="header">
-        Header
+        <Header></Header>
       </div>
 
       <div class="content">
@@ -51,7 +33,7 @@ import Menu from "./components/Menu/MenuList.vue"
 }
 .menu{
   width: 200px;
-  background-color: #EBEEF5;
+  background-color: #F2F3F5;
 }
 .main{
   flex:1;
@@ -62,6 +44,8 @@ import Menu from "./components/Menu/MenuList.vue"
 }
 .header{
   height: 75px;
+  align-items: center;
+  display: flex;
 }
 .footer {
   height: 75px;
@@ -69,5 +53,6 @@ import Menu from "./components/Menu/MenuList.vue"
 .content {
   flex: 1;
   overflow-y: auto;
+  margin-left: 20px;
 }
 </style>

@@ -18,7 +18,7 @@ onMounted(() => {
     <div class="banner">
         <el-carousel :interval="4000" type="card" height="300px" trigger="click">
             <el-carousel-item v-for="(item,i) in banners" :key="i">
-                <el-image :src="item.imageUrl" />
+                <el-image :src="item.imageUrl"/>
             </el-carousel-item>
         </el-carousel>
     </div>
