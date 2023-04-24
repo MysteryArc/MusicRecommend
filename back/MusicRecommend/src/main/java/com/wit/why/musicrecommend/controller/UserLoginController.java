@@ -37,6 +37,6 @@ public class UserLoginController {
             flag = true;
             message = "登录成功";
         }
-        return new Response(flag, message);
+        return new Response(flag, user);
     }
 }

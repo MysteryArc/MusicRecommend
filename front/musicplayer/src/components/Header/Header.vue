@@ -4,12 +4,18 @@ import { ArrowRight } from '@element-plus/icons-vue'
 import { Search } from '@element-plus/icons-vue'
 import { UserFilled } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
+import useUserStore from '../../store/user'
 
 const input = ""
 const $router = useRouter()
+const userStore = useUserStore()
 
 function gologin() {
     $router.push("/login")
+}
+
+function golove() {
+    $router.push("/love")
 }
 </script>
 
@@ -29,7 +35,12 @@ function gologin() {
         </div>
         <div class="userinfo">
             <el-avatar :icon="UserFilled" />
-            <el-button text type="info" @click="gologin">登录</el-button>
+            <template v-if="userStore.islogin==true">
+                <el-button text type="info" @click="golove">{{userStore.userId}}</el-button>
+            </template>
+            <template v-else>
+                <el-button text type="info" @click="gologin">登录</el-button>
+            </template>
         </div>
     </div>
 </template>
