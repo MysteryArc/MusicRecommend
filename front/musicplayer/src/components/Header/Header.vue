@@ -23,8 +23,8 @@ function golove() {
     <div class="head" style="display: flex; align-items: center;">
         <div class="head-left">
             <div class="arrowButton">
-                    <el-button :icon="ArrowLeft" size="large" circle />
-                    <el-button :icon="ArrowRight" size="large" circle />
+                    <el-button :icon="ArrowLeft" size="large" text />
+                    <el-button :icon="ArrowRight" size="large" text />
             </div>
             <div class="search">
                 <el-input
