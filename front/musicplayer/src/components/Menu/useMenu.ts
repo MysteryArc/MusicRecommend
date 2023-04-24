@@ -1,14 +1,4 @@
-interface IMenu {
-    name: string,
-    path: string,
-    key: string,
-    icon?: any
-}
-
-interface IMenuList{
-    name: string,
-    menus: IMenu[]
-}
+import { LocationStarFilled, Music, LocationHeart, Time } from "@vicons/carbon"
 
 export function useMenu() {
     const menus: IMenuList[] = [
@@ -17,15 +7,15 @@ export function useMenu() {
             menus: [
                 {
                     name: "推荐",
-                    path: "#/recommend",
+                    path: "/recommend",
                     key: "recommend",
-                    icon: ""
+                    icon: LocationStarFilled
                 },
                 {
                     name: "音乐馆",
-                    path: "#/show",
+                    path: "/show",
                     key: "show",
-                    icon:""
+                    icon: Music
                 }
             ]
         },
@@ -34,15 +24,15 @@ export function useMenu() {
             menus: [
                 {
                     name: "我喜欢",
-                    path: "#/love",
+                    path: "/love",
                     key: "love",
-                    icon: ""
+                    icon: LocationHeart
                 },
                 {
                     name: "最近播放",
-                    path: "#/recently",
+                    path: "/recently",
                     key: "recently",
-                    icon: ""
+                    icon: Time
                 }
             ]
         }

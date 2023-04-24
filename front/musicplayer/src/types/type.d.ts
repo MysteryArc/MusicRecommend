@@ -17,3 +17,15 @@ interface IBanner{
     imageUrl: string,
     targetId: number
 }
+
+interface IMenu {
+    name: string,
+    path: string,
+    key: string,
+    icon?: any
+}
+
+interface IMenuList{
+    name: string,
+    menus: IMenu[]
+}

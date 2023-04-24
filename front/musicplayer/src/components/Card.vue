@@ -66,7 +66,7 @@ const play = () => {
 }
 
 .ncard:hover{
-    background-color: #D6D6D6FF;
+    background-color: #EDEDEDFF;
 }
 .card-buttons{
     margin-left: 15%;
