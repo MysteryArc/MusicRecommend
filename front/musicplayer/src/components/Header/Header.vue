@@ -38,7 +38,7 @@ function golove() {
         <div class="userinfo">
             <el-avatar :icon="UserFilled" />
             <template v-if="userStore.islogin==true">
-                <el-button text type="info" @click="golove">{{userStore.userId}}</el-button>
+                <el-button text type="info" @click="golove">{{userStore.userName}}</el-button>
             </template>
             <template v-else>
                 <el-button text type="info" @click="gologin">登录</el-button>

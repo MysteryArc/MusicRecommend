@@ -9,7 +9,8 @@ const useUserStore = defineStore("user", {
     state: () => ({
         islogin: false,
         userId: "",
-        recommendId: ""
+        recommendId: "",
+        userName: ""
     }),
     getters: {
         getUserId: state => state.userId
@@ -20,6 +21,7 @@ const useUserStore = defineStore("user", {
             if (resp.data.flag == true) {
                 this.userId = resp.data.value.userId
                 this.recommendId = resp.data.value.id
+                this.userName = resp.data.value.name
                 this.islogin = true
                 ElMessage({
                     message: '登录成功',

@@ -20,7 +20,7 @@ onMounted(() => {
     <div class="recommend-main" style="">
         <div class="title">推荐</div>
         <div class="today" style="margin-top: 15px;">
-            <div class="series-title">Hi {{userStore.userId}} 今日为你推荐</div>
+            <div class="series-title">Hi {{userStore.userName}} 今日为你推荐</div>
             <div style="margin-right: 10px;">
                 <Banner></Banner>
             </div>
