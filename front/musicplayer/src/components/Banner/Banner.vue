@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 
-const banners = ref([])
+const banners = ref<IBanner[]>([])
 
 async function getBanner() {
     const resp = await axios.get('https://netease-cloud-music-api-pi-coral-30.vercel.app/banner')

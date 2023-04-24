@@ -1,20 +1,5 @@
 import axios from "../api/request";
 
-interface IArtists{
-    cloudId: number,
-    name: string,
-    singer: string,
-    picUrl: string,
-    album: string,
-    playUrl: string,
-    id: number
-}
-
-interface IPopular{
-    Id: string,
-    Score: number
-}
-
 function getPopular() {
     return new Promise((reslove,reject) => {
         axios.get("http://localhost:8087/api/popular").then(async res => {
