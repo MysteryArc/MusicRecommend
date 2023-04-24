@@ -20,18 +20,20 @@ function golove() {
 </script>
 
 <template>
-    <div class="Head" style="display: flex; align-items: center;">
-        <div class="arrowButton">
-                <el-button :icon="ArrowLeft" size="large" circle />
-                <el-button :icon="ArrowRight" size="large" circle />
-        </div>
-        <div class="search">
-            <el-input
-            v-model="input"
-            size="large"
-            placeholder="搜索"
-            :suffix-icon="Search"
-        />
+    <div class="head" style="display: flex; align-items: center;">
+        <div class="head-left">
+            <div class="arrowButton">
+                    <el-button :icon="ArrowLeft" size="large" circle />
+                    <el-button :icon="ArrowRight" size="large" circle />
+            </div>
+            <div class="search">
+                <el-input
+                v-model="input"
+                size="large"
+                placeholder="搜索"
+                :suffix-icon="Search"
+            />
+            </div>
         </div>
         <div class="userinfo">
             <el-avatar :icon="UserFilled" />
@@ -46,8 +48,16 @@ function golove() {
 </template>
 
 <style scoped>
+.head{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 .arrowButton{
-    margin-left: 15px;
+    margin-left: 25px;
+}
+.head-left{
+    display: flex;
 }
 
 /*搜索组件最外层div */
@@ -73,9 +83,8 @@ function golove() {
     box-shadow: 0 0 0 0px;
 }
 .userinfo{
-    position: fixed;
-    right: 5%;
     display: flex;
     align-items: center;
+    margin-right: 5%;
 }
 </style>

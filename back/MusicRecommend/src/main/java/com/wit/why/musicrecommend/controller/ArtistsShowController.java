@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/artists")
+@RequestMapping("/artists/page")
 public class ArtistsShowController {
 
     @Autowired
@@ -24,9 +24,11 @@ public class ArtistsShowController {
     }
 
     @GetMapping("{currentPage}")
-    public List<Artists> getById(@PathVariable Integer currentPage) {
+    public List<Artists> getPage(@PathVariable Integer currentPage) {
         Page<Artists> page = iArtistsService.page(new Page<>(currentPage, 10));
         return page.getRecords();
     }
+
+
 
 }

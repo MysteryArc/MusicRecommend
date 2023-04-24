@@ -10,13 +10,13 @@ const musictotal = ref(100)
 const currentpage = ref(1)
 
 async function getMusic() {
-    const resp = await axios.get('/artists')
+    const resp = await axios.get('/artists/page')
     // console.log(resp.data)
     musicdata.value = resp.data
 }
 
 async function getPage(current:number) {
-    const resp = await axios.get('/artists/' + current)
+    const resp = await axios.get('/artists/page' + current)
     console.log(resp.data)
     musicdata.value = resp.data
 }
@@ -83,5 +83,7 @@ onMounted(() => {
 
 
 <style scoped>
-
+.main{
+    height: 100%;
+}
 </style>

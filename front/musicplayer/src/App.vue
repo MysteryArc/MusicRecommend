@@ -14,9 +14,9 @@ import Header from "./components/Header/Header.vue"
         <Header></Header>
       </div>
 
-      <div class="content">
-        <RouterView/>
-      </div>
+        <div class="content">
+            <RouterView/>
+        </div>
 
       <div class="footer">
         Footer
@@ -52,7 +52,6 @@ import Header from "./components/Header/Header.vue"
 }
 .content {
   flex: 1;
-  overflow-y: auto;
-  margin-left: 20px;
+  overflow-y: scroll;
 }
 </style>

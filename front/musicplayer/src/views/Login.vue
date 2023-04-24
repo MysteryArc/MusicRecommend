@@ -8,14 +8,14 @@ const loginForm = reactive({
     password: ''
 })
 
-const $router = useRouter()
+const router = useRouter()
 const userStore = useUserStore()
 
 async function onSubmit() {
     console.log("submit")
     await userStore.login(loginForm)
     if (userStore.islogin == true) {
-        $router.push("/recommend")
+        router.push("/recommend")
     }
 }
 
