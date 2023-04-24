@@ -1,4 +1,5 @@
-import { LocationStarFilled, Music, LocationHeart, Time } from "@vicons/carbon"
+import { LocationStarFilled } from "@vicons/carbon"
+import { MusicalNotes, HeartSharp, TimeSharp } from "@vicons/ionicons5"
 
 export function useMenu() {
     const menus: IMenuList[] = [
@@ -15,7 +16,7 @@ export function useMenu() {
                     name: "音乐馆",
                     path: "/show",
                     key: "show",
-                    icon: Music
+                    icon: MusicalNotes
                 }
             ]
         },
@@ -26,13 +27,13 @@ export function useMenu() {
                     name: "我喜欢",
                     path: "/love",
                     key: "love",
-                    icon: LocationHeart
+                    icon: HeartSharp
                 },
                 {
                     name: "最近播放",
                     path: "/recently",
                     key: "recently",
-                    icon: Time
+                    icon: TimeSharp
                 }
             ]
         }

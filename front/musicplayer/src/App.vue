@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Menu from "./components/Menu/MenuList.vue"
 import Header from "./components/Header/Header.vue"
+import Bottom from "./components/bottom.vue";
 </script>
 
 <template>
@@ -19,7 +20,7 @@ import Header from "./components/Header/Header.vue"
         </div>
 
       <div class="footer">
-        Footer
+        <Bottom/>
       </div>
     </div>
   </div>
@@ -48,7 +49,7 @@ import Header from "./components/Header/Header.vue"
   display: flex;
 }
 .footer {
-  height: 75px;
+  height: 80px;
 }
 .content {
   flex: 1;
