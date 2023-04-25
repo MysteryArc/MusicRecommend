@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue"
+import { onMounted, reactive, ref } from "vue"
 import useAudioStore from "../store/audio"
-import { VideoPause, VideoPlay } from "@element-plus/icons-vue";
+import { PlayCircle, PauseCircle, PlaySkipBackSharp, PlaySkipForwardSharp } from "@vicons/ionicons5"
+import { NIcon } from "naive-ui"
 
 const audioStore = useAudioStore()
 const audio = ref()
+const slidebar = ref()
+const wrap = ref()
+const circle = ref()
+const circleVisible = ref(false)
+
 
 const audioData = reactive({
     audiourl: audioStore.audioUrl,
@@ -140,6 +146,8 @@ const audioTimeupdate = () => {
 // 当媒体音频第一帧加载完成时
 const audioLoadeddata = () => {
     audioData.duration = audio.value.duration;
+    audio.value.play()
+    audioStore.isPlay=true
 };
 
 // 进度条和音频播放进度进行关联
@@ -159,25 +167,53 @@ function currentTimeByProgressBar(styleLeft: string) {
     }
 }
 
+function displayCircle() {
+    circleVisible.value = true
+}
 
+function hiddenCircle() {
+    circleVisible.value = false
+}
+
+onMounted(() => {
+    wrapEle.el = wrap.value
+    circleTarget.el = circle.value
+    sliderBar.el = slidebar.value
+})
 
 </script>
 
 <template>
-    <div
-        class="slider-wrap"
-        target="wrap"
-        @click="clickSliderWrap"
-        >
-        <div class="circle" target="circle" @mousedown="circleMousedown"></div>
-        <div class="slider-bar" target="sliderbar"></div>
+    <div class="slider-box" @mouseenter="displayCircle" @mouseleave="hiddenCircle">
+        <div
+            class="slider-wrap"
+            target="wrap"
+            ref="wrap"
+            @click="clickSliderWrap"
+            >
+            <div class="circle" target="circle" @mousedown="circleMousedown" ref="circle" v-show="circleVisible"></div>
+            <div class="slider-bar" target="sliderbar" ref="slidebar"></div>
+        </div>
     </div>
-    <div class="icon-div" @click="playPauseAudio">
+    <!-- <div class="icon-div" @click="playPauseAudio">
         <video-play class="icon" v-if="!audioData.playing"></video-play>
         <video-pause class="icon" v-else></video-pause>
+    </div> -->
+    <div class="button-box">
+        <div class="controlButtons">
+            <n-icon size="25" class="skipctrl">
+                <PlaySkipBackSharp/>
+            </n-icon>
+            <n-icon size="45" class="play-pause" @click="playPauseAudio">
+                <PlayCircle v-if="audioStore.isPlay==false"/>
+                <PauseCircle v-else/>
+            </n-icon>
+            <n-icon size="25" class="skipctrl">
+                <PlaySkipForwardSharp/>
+            </n-icon>
+        </div>
     </div>
     <audio
-        controls
         :src="audioStore.audioUrl"
         ref='audio'
         preload="auto"
@@ -188,8 +224,14 @@ function currentTimeByProgressBar(styleLeft: string) {
 </template>
 
 <style scoped>
+.slider-box{
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
 .slider-wrap{
     position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     background-color: #EFEFEFFF;
@@ -204,21 +246,30 @@ function currentTimeByProgressBar(styleLeft: string) {
         cursor: pointer;
         user-select: none;
         transform: translate(-50%);
-        /* left: v-bind('leftPercent'); */
     }
 .slider-bar{
     height: 3px;
     background-color: #1FC175FF;
-    /* width: v-bind('leftPercent'); */
 }
-.icon-div {
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    margin-left: 22px;
-    margin-right: 17px;
+.button-box{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
-.icon {
+.controlButtons{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.skipctrl:hover {
+    cursor: pointer;
+    color: #55D9A2FF;
+}
+.play-pause{
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #55D9A2FF;
     cursor: pointer;
 }
 

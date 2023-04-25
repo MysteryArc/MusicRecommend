@@ -7,7 +7,7 @@
                 <div class="music-singer">{{ props.item.singer }}</div>
             </div>
             <div class="card-buttons" v-show="buttonVisible">
-                <n-icon class="pointer" size="25" style="margin-left: 7px;" @click="play">
+                <n-icon class="pointer" size="25" style="margin-left: 7px;" @click="cardPlay(props.item.cloudId)">
                     <Play />
                 </n-icon>
                 <n-icon class="pointer" size="25" style="margin-left: 5px;">
@@ -28,12 +28,13 @@
 import { NCard, NIcon } from 'naive-ui'
 import { Play, Add, Download, List } from "@vicons/carbon"
 import { ref } from 'vue';
+import useAudioStore from "../store/audio"
 
 
 const props = defineProps<{
     item: IArtists
 }>()
-
+const audioStore = useAudioStore()
 
 const buttonVisible = ref(false);
 
@@ -44,8 +45,8 @@ function displayButton() {
 function hiddenButton() {
     buttonVisible.value = false
 }
-const play = () => {
-
+function cardPlay(playid: string | number) {
+    audioStore.audioUrl = "http://music.163.com/song/media/outer/url?id=" + playid + ".mp3"
 }
 </script>
 
@@ -75,7 +76,7 @@ const play = () => {
 }
 .pointer:hover{
     cursor: pointer;
-    color: #18A058;
+    color: #55D9A2FF;
 }
 div{
     font-family: 'Microsoft YaHei UI', Arial, sans-serif;

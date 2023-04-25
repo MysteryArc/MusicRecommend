@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import axios from '../api/request';
 import { onMounted, ref } from 'vue';
+import useAudioStore from "../store/audio"
 
 const musicdata = ref([]) 
-const src = ref("");
 const audioee = ref()
 const page = ref()
 const musictotal = ref(100)
 const currentpage = ref(1)
+const audioStore = useAudioStore()
 
 async function getMusic() {
     const resp = await axios.get('/artists/page')
@@ -32,8 +33,7 @@ function playmusic(playid: number) {
 }
 
 function playmusic0(playid: number) {
-    audioee.value.src = "http://music.163.com/song/media/outer/url?id=" + playid + ".mp3"
-    audioee.value.play()
+    audioStore.audioUrl = "http://music.163.com/song/media/outer/url?id=" + playid + ".mp3"
 }
 
 onMounted(() => {
@@ -46,9 +46,6 @@ onMounted(() => {
     <el-container class="main">
         <el-header>
             <h3 style="float: left;">音乐分页</h3>
-            <audio controls ref='audioee' style="float: right">
-                <source :src="src"/>
-            </audio>
         </el-header>
         <el-main>
             <div style="width: 100%;">

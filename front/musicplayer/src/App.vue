@@ -49,7 +49,7 @@ import Bottom from "./components/bottom.vue";
   display: flex;
 }
 .footer {
-  height: 80px;
+  height: 90px;
 }
 .content {
   flex: 1;
