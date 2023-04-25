@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
+import useAudioStore from '../../store/audio';
 
 const banners = ref<IBanner[]>([])
+const audioStore = useAudioStore()
 
 async function getBanner() {
     const resp = await axios.get('https://netease-cloud-music-api-pi-coral-30.vercel.app/banner')
     banners.value = resp.data.banners
+}
+
+function bannerPlay(playid: number | string) {
+    audioStore.audioUrl = "http://music.163.com/song/media/outer/url?id=" + playid + ".mp3"
 }
 
 onMounted(() => {
@@ -17,7 +23,7 @@ onMounted(() => {
 <template>
     <div class="banner">
         <el-carousel :interval="4000" type="card" height="300px" trigger="click">
-            <el-carousel-item v-for="(item,i) in banners" :key="i">
+            <el-carousel-item v-for="(item,i) in banners" :key="i" @click="bannerPlay(item.targetId)">
                 <el-image :src="item.imageUrl"/>
             </el-carousel-item>
         </el-carousel>

@@ -11,13 +11,13 @@
                     <Play />
                 </n-icon>
                 <n-icon class="pointer" size="25" style="margin-left: 5px;">
-                        <Add/>
+                    <Add/>
                 </n-icon>
                 <n-icon class="pointer" size="20" style="margin-left: 7px;">
-                        <Download/>
+                    <Download/>
                 </n-icon>
                 <n-icon class="pointer" size="25" style="margin-left: 7px;">
-                        <List/>
+                    <List/>
                 </n-icon>
             </div>
         </div>

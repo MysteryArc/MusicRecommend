@@ -19,8 +19,6 @@ const audioData = reactive({
     currentTime: 0, // 当前播放的位置
 });
 
-const leftPercent = ref("0%")
-
 const wrapEle: {
     width: string;
     el: any;
