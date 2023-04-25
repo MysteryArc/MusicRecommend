@@ -15,7 +15,6 @@ function getPopular() {
             reject(err)
         })
     })
-    
 }
 
 export default getPopular

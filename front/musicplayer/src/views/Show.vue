@@ -32,8 +32,9 @@ function playmusic(playid: number) {
     window.open("http://music.163.com/song/media/outer/url?id=" + playid + ".mp3")
 }
 
-function playmusic0(playid: number) {
-    audioStore.audioUrl = "http://music.163.com/song/media/outer/url?id=" + playid + ".mp3"
+function playmusic0(music: any) {
+    const audioUrl = "http://music.163.com/song/media/outer/url?id=" + music.cloudId + ".mp3"
+    audioStore.setAudio(audioUrl, music.id, music.name, music.picUrl)
 }
 
 onMounted(() => {
@@ -61,7 +62,7 @@ onMounted(() => {
                     <el-table-column label="Play">
                         <template #default="scope">
                             <el-button type="primary" @click="playmusic(scope.row.cloudId)">播放</el-button>
-                            <el-button type="primary" @click="playmusic0(scope.row.cloudId)">此页面</el-button>
+                            <el-button type="primary" @click="playmusic0(scope.row)">此页面</el-button>
                         </template>
                     </el-table-column>
                 </el-table>

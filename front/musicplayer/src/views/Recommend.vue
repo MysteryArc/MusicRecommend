@@ -4,13 +4,26 @@ import Banner from "../components/Banner/Banner.vue"
 import useUserStore from "../store/user";
 import getPopular from "../api/getHot";
 import Card from "../components/Card.vue";
+import getRecommend from '../api/getRecommend';
+import getNeighbors from "../api/getNeighbors"
+import useAudioStore from '../store/audio';
 
 const userStore = useUserStore()
+const audioStore = useAudioStore()
 
 const hotList = reactive<any>([])
+const recommendList = reactive<any>([])
+let neighborList = reactive<any>([])
+
 onMounted(() => {
     getPopular().then((res: any) => {
         hotList.push(...res)
+    })
+    getRecommend(userStore.recommendId).then((res: any) => {
+        recommendList.push(...res)
+    })
+    getNeighbors(audioStore.audioId).then((res: any) => {
+        neighborList.push(...res)
     })
 })
 
@@ -35,6 +48,22 @@ onMounted(() => {
         </div>
         <div class="recommend-series">
             <div class="series-title">红心歌曲预定</div>
+            <div class="card-box" v-if="userStore.islogin==true">
+                <div v-for="item in recommendList.slice(0, 6)" :key="item.id" class="recommend-card">
+                    <Card :item="item"/>
+                </div>
+            </div>
+            <div v-else>
+                <h2>请先登录</h2>
+            </div>
+        </div>
+        <div class="recommend-series">
+            <div class="series-title">因为你在听{{ audioStore.audioName }}</div>
+            <div class="card-box">
+                <div v-for="item in neighborList.slice(0, 6)" :key="item.id" class="recommend-card">
+                    <Card :item="item"/>
+                </div>
+            </div>
         </div>
     </div>
 </template>

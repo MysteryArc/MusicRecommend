@@ -7,7 +7,7 @@
                 <div class="music-singer">{{ props.item.singer }}</div>
             </div>
             <div class="card-buttons" v-show="buttonVisible">
-                <n-icon class="pointer" size="25" style="margin-left: 7px;" @click="cardPlay(props.item.cloudId)">
+                <n-icon class="pointer" size="25" style="margin-left: 7px;" @click="cardPlay(props.item)">
                     <Play />
                 </n-icon>
                 <n-icon class="pointer" size="25" style="margin-left: 5px;">
@@ -45,8 +45,11 @@ function displayButton() {
 function hiddenButton() {
     buttonVisible.value = false
 }
-function cardPlay(playid: string | number) {
-    audioStore.audioUrl = "http://music.163.com/song/media/outer/url?id=" + playid + ".mp3"
+function cardPlay(music: any) {
+    audioStore.audioUrl = "http://music.163.com/song/media/outer/url?id=" + music.cloudId + ".mp3"
+    audioStore.audioName = music.name
+    audioStore.audioId = music.id
+    audioStore.audioPic = music.picUrl
 }
 </script>
 
