@@ -3,9 +3,10 @@ import { DataTableColumns, NButton, NDataTable, NIcon } from 'naive-ui';
 import { h, onMounted, reactive } from 'vue';
 import getRecently from "../api/getRecently"
 import useUserStore from '../store/user';
-import { Play } from "@vicons/carbon"
+import useAudioStore from '../store/audio';
 
 const userStore = useUserStore()
+const audioStore = useAudioStore()
 const recentlyList = reactive<any>([])
 const columns: DataTableColumns<IArtists> = [
     {
@@ -30,7 +31,7 @@ const columns: DataTableColumns<IArtists> = [
                     strong: true,
                     tertiary: true,
                     size: 'small',
-                    onClick: () => play(row.cloudId)
+                    onClick: () => play(row)
                 },
                 {
                     default: () => 'Play'
@@ -40,8 +41,10 @@ const columns: DataTableColumns<IArtists> = [
     }
 ]
 
-function play(playid: number | string) {
-    
+function play(music: any) {
+    const audioUrl = "http://music.163.com/song/media/outer/url?id=" + music.cloudId + ".mp3"
+    audioStore.setAudio(audioUrl, music.id, music.name, music.picUrl)
+    audioStore.read(userStore.recommendId, audioStore.audioId)
 }
 
 onMounted(() => {
@@ -55,7 +58,7 @@ onMounted(() => {
     <div class="recently-main">
         <div class="title">最近播放</div>
         <div class="recently-table">
-            <n-data-table :columns="columns" :data="recentlyList" single-column :bordered="false" :max-height="800"></n-data-table>
+            <n-data-table :columns="columns" :data="recentlyList" single-column :bordered="false" :max-height="650"></n-data-table>
         </div>
     </div>
 </template>

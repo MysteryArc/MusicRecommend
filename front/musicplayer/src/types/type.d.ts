@@ -36,3 +36,9 @@ interface IRead{
     weight: number,
     timestamp: number
 }
+
+interface ILove{
+    userId: any,
+    artistsId: any,
+    timestamp: number
+}
