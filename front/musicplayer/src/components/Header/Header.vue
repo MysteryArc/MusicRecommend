@@ -7,15 +7,23 @@ import { useRouter } from 'vue-router'
 import useUserStore from '../../store/user'
 
 const input = ""
-const $router = useRouter()
+const router = useRouter()
 const userStore = useUserStore()
 
 function gologin() {
-    $router.push("/login")
+    router.push("/login")
 }
 
 function golove() {
-    $router.push("/love")
+    router.push("/love")
+}
+
+function goprev() {
+    router.back()
+}
+
+function goforward() {
+    router.forward()
 }
 </script>
 
@@ -23,8 +31,8 @@ function golove() {
     <div class="head" style="display: flex; align-items: center;">
         <div class="head-left">
             <div class="arrowButton">
-                    <el-button :icon="ArrowLeft" size="large" text />
-                    <el-button :icon="ArrowRight" size="large" text />
+                    <el-button :icon="ArrowLeft" size="large" text @click="goprev"/>
+                    <el-button :icon="ArrowRight" size="large" text @click="goforward"/>
             </div>
             <div class="search">
                 <el-input
