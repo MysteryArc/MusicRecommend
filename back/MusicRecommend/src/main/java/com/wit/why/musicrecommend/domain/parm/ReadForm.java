@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReadForm {
-    private int userId;
-    private int artistId;
+    private Integer userId;
+    private Integer artistId;
 }

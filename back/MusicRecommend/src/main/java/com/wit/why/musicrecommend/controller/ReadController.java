@@ -1,10 +1,8 @@
 package com.wit.why.musicrecommend.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wit.why.musicrecommend.domain.Artists;
 import com.wit.why.musicrecommend.domain.Read;
 import com.wit.why.musicrecommend.domain.parm.ReadForm;
-import com.wit.why.musicrecommend.service.IArtistsService;
 import com.wit.why.musicrecommend.service.IReadService;
 import com.wit.why.musicrecommend.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Date;
 
 @RestController
@@ -23,7 +20,7 @@ public class ReadController {
     IReadService iReadService;
 
     @PostMapping
-    public Response read(@RequestBody ReadForm readForm){
+    public Response read(@RequestBody ReadForm readForm) {
         long time = new Date().getTime();
         time = time / 1000;
         QueryWrapper<Read> qw = new QueryWrapper<>();
