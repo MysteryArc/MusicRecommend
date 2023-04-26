@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import axios from "../api/request";
+import { reactive } from "vue";
 
 const useAudioStore = defineStore("audio", {
     state: () => ({
@@ -14,6 +16,13 @@ const useAudioStore = defineStore("audio", {
             this.audioId = audioId
             this.audioName = audioName
             this.audioPic = audioPic
+        },
+        async read(user: string | number, artist: string | number) {
+            const readForm = reactive({
+                userId: user,
+                artistId: artist
+            })
+            await axios.post("/read", readForm)
         }
     }
 

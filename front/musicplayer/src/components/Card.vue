@@ -29,12 +29,14 @@ import { NCard, NIcon } from 'naive-ui'
 import { Play, Add, Download, List } from "@vicons/carbon"
 import { ref } from 'vue';
 import useAudioStore from "../store/audio"
+import useUserStore from '../store/user';
 
 
 const props = defineProps<{
     item: IArtists
 }>()
 const audioStore = useAudioStore()
+const userStore = useUserStore()
 
 const buttonVisible = ref(false);
 
@@ -50,6 +52,7 @@ function cardPlay(music: any) {
     audioStore.audioName = music.name
     audioStore.audioId = music.id
     audioStore.audioPic = music.picUrl
+    audioStore.read(userStore.recommendId, audioStore.audioId)
 }
 </script>
 

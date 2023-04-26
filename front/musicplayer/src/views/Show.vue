@@ -2,13 +2,14 @@
 import axios from '../api/request';
 import { onMounted, ref } from 'vue';
 import useAudioStore from "../store/audio"
+import useUserStore from '../store/user';
 
 const musicdata = ref([]) 
-const audioee = ref()
 const page = ref()
 const musictotal = ref(100)
 const currentpage = ref(1)
 const audioStore = useAudioStore()
+const userStore = useUserStore()
 
 async function getMusic() {
     const resp = await axios.get('/artists/page')
@@ -17,7 +18,7 @@ async function getMusic() {
 }
 
 async function getPage(current:number) {
-    const resp = await axios.get('/artists/page' + current)
+    const resp = await axios.get('/artists/page/' + current)
     console.log(resp.data)
     musicdata.value = resp.data
 }
@@ -35,6 +36,7 @@ function playmusic(playid: number) {
 function playmusic0(music: any) {
     const audioUrl = "http://music.163.com/song/media/outer/url?id=" + music.cloudId + ".mp3"
     audioStore.setAudio(audioUrl, music.id, music.name, music.picUrl)
+    audioStore.read(userStore.recommendId, audioStore.audioId)
 }
 
 onMounted(() => {
