@@ -29,3 +29,10 @@ interface IMenuList{
     name: string,
     menus: IMenu[]
 }
+
+interface IRead{
+    userId: any,
+    artistsId: any,
+    weight: number,
+    timestamp: number
+}
