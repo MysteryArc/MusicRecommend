@@ -23,7 +23,14 @@ const useAudioStore = defineStore("audio", {
                 artistId: artist
             })
             await axios.post("/read", readForm)
-        }
+        },
+        async love(user: string | number, artist: string | number) {
+            const readForm = reactive({
+                userId: user,
+                artistId: artist
+            })
+            await axios.post("/love", readForm)
+        },
     }
 
 })

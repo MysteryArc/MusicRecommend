@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from "vue"
 import useAudioStore from "../store/audio"
-import { PlayCircle, PauseCircle, PlaySkipBackSharp, PlaySkipForwardSharp } from "@vicons/ionicons5"
-import { NIcon } from "naive-ui"
+import useUserStore from "../store/user"
+import { PlayCircle, PauseCircle, PlaySkipBackSharp, PlaySkipForwardSharp, HeartOutline } from "@vicons/ionicons5"
+import { NIcon, NImage } from "naive-ui"
+import { ElMessage } from "element-plus"
 
 const audioStore = useAudioStore()
+const userStore = useUserStore()
 const audio = ref()
 const slidebar = ref()
 const wrap = ref()
 const circle = ref()
 const circleVisible = ref(false)
+const nullptr = ""
 
 
 const audioData = reactive({
@@ -173,6 +177,14 @@ function hiddenCircle() {
     circleVisible.value = false
 }
 
+function love() {
+    audioStore.love(userStore.recommendId, audioStore.audioId)
+    ElMessage({
+        message: '已添加到喜欢！',
+        type: 'success',
+    })
+}
+
 onMounted(() => {
     wrapEle.el = wrap.value
     circleTarget.el = circle.value
@@ -197,7 +209,19 @@ onMounted(() => {
         <video-play class="icon" v-if="!audioData.playing"></video-play>
         <video-pause class="icon" v-else></video-pause>
     </div> -->
+    
     <div class="button-box">
+        <div class="musicInfo">
+            <n-image width="50" :src=audioStore.audioPic />
+            <div style="margin-left: 10px;">
+                <div class="music-name">{{ audioStore.audioName }}</div>
+                <div class="loveButton" v-if="audioStore.audioName!=nullptr" @click="love">
+                    <n-icon size="20">
+                        <HeartOutline/>
+                    </n-icon>
+                </div>
+            </div>
+        </div>
         <div class="controlButtons">
             <n-icon size="25" class="skipctrl">
                 <PlaySkipBackSharp/>
@@ -253,12 +277,28 @@ onMounted(() => {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+}
+.musicInfo{
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+.loveButton:hover{
+    cursor: pointer;
+}
+.music-name{
+    font-size: 14px;
+}
+.loveButton{
+    margin-top: 3px;
 }
 .controlButtons{
     display: flex;
     align-items: center;
     margin-bottom: 30px;
+    margin-left: 36%;
 }
 .skipctrl:hover {
     cursor: pointer;
