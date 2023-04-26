@@ -42,3 +42,13 @@ interface ILove{
     artistsId: any,
     timestamp: number
 }
+
+interface IUser{
+    id: any,
+    userId: any,
+    country: any,
+    age: any,
+    gender: any,
+    password: any,
+    name: any
+}

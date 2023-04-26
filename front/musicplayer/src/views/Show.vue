@@ -41,7 +41,7 @@ function playmusic0(music: any) {
 
 onMounted(() => {
     getMusic()
-    getMusicTotal()
+    // getMusicTotal()
 })
 </script>
 

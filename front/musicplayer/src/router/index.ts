@@ -3,6 +3,7 @@ import Login from "../views/Login.vue"
 import Recommend from "../views/Recommend.vue"
 import Love from "../views/Love.vue"
 import Recently from "../views/Recently.vue"
+import Manage from "../views/Manage.vue"
 import { createRouter, createWebHashHistory } from "vue-router"
 
 
@@ -32,6 +33,11 @@ const routes = [
         name: "recently",
         component: Recently
     },
+    {
+        path: '/manage',
+        name: "manage",
+        component: Manage
+    }
 ]
 
 const router = createRouter({
