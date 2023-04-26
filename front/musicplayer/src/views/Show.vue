@@ -46,25 +46,25 @@ onMounted(() => {
 </script>
 
 <template>
-    <el-container class="main">
+    <el-container class="show-main">
         <el-header>
             <h3 style="float: left;">音乐分页</h3>
         </el-header>
         <el-main>
             <div style="width: 100%;">
-                <el-table :data="musicdata" stripe height="530" style="width: 100%;">
+                <el-table :data="musicdata" stripe height="580" style="width: 100%;">
                     <el-table-column prop="cloudId" label="ID" />
                     <el-table-column prop="name" label="Name" />
                     <el-table-column label="Picture">
                         <template #default="scope">
-                            <el-image :src="scope.row.picUrl" style="width: 150px; height: 150px;" lazy/>
+                            <el-image :src="scope.row.picUrl" style="width: 100px; height: 100px;" lazy/>
                         </template>
                     </el-table-column>
                     <el-table-column prop="singer" label="Singer" />
                     <el-table-column label="Play">
                         <template #default="scope">
-                            <el-button type="primary" @click="playmusic(scope.row.cloudId)">播放</el-button>
-                            <el-button type="primary" @click="playmusic0(scope.row)">此页面</el-button>
+                            <!-- <el-button type="primary" @click="playmusic(scope.row.cloudId)">播放</el-button> -->
+                            <el-button type="primary" @click="playmusic0(scope.row)">Play</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -83,7 +83,7 @@ onMounted(() => {
 
 
 <style scoped>
-.main{
+.show-main{
     height: 100%;
 }
 </style>
