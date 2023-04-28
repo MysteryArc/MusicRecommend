@@ -2,9 +2,10 @@
 import { onMounted, reactive, ref } from "vue"
 import useAudioStore from "../store/audio"
 import useUserStore from "../store/user"
-import { PlayCircle, PauseCircle, PlaySkipBackSharp, PlaySkipForwardSharp, HeartOutline } from "@vicons/ionicons5"
+import { PlayCircle, PauseCircle, PlaySkipBackSharp, PlaySkipForwardSharp, HeartOutline, Heart } from "@vicons/ionicons5"
 import { NIcon, NImage } from "naive-ui"
 import { ElMessage } from "element-plus"
+import axios from "../api/request"
 
 const audioStore = useAudioStore()
 const userStore = useUserStore()
@@ -14,6 +15,7 @@ const wrap = ref()
 const circle = ref()
 const circleVisible = ref(false)
 const nullptr = ""
+const islove = ref(false)
 
 
 const audioData = reactive({
@@ -149,7 +151,8 @@ const audioTimeupdate = () => {
 const audioLoadeddata = () => {
     audioData.duration = audio.value.duration;
     audio.value.play()
-    audioStore.isPlay=true
+    audioStore.isPlay = true
+    isLove()
 };
 
 // 进度条和音频播放进度进行关联
@@ -177,12 +180,29 @@ function hiddenCircle() {
     circleVisible.value = false
 }
 
-function love() {
-    audioStore.love(userStore.recommendId, audioStore.audioId)
-    ElMessage({
-        message: '已添加到喜欢！',
-        type: 'success',
-    })
+//添加到喜欢
+async function loveAndRemove() {
+    if (islove.value == false) {
+        audioStore.love(userStore.recommendId, audioStore.audioId)
+        ElMessage({
+            message: '已添加到喜欢！',
+            type: 'success',
+        })
+    }
+    else {
+        audioStore.notlove(userStore.recommendId, audioStore.audioId)
+        ElMessage({
+            message: '我不喜欢了！',
+            type: 'error',
+        })
+    }
+    isLove()
+}
+
+//查询是否是喜欢的歌
+async function isLove() {
+    const resp = await axios.get("/love/" + userStore.recommendId + "/" + audioStore.audioId) 
+    islove.value = resp.data.flag
 }
 
 onMounted(() => {
@@ -215,8 +235,11 @@ onMounted(() => {
             <n-image width="50" :src=audioStore.audioPic />
             <div style="margin-left: 10px;">
                 <div class="music-name">{{ audioStore.audioName }}</div>
-                <div class="loveButton" v-if="audioStore.audioName!=nullptr" @click="love">
-                    <n-icon size="20">
+                <div class="loveButton" v-if="audioStore.audioName!=nullptr" @click="loveAndRemove">
+                    <n-icon size="20" class="loving" v-if="islove == true">
+                        <Heart/>
+                    </n-icon>
+                    <n-icon size="20" class="notlove" v-else>
                         <HeartOutline/>
                     </n-icon>
                 </div>
@@ -288,6 +311,9 @@ onMounted(() => {
 .loveButton:hover{
     cursor: pointer;
 }
+.loving{
+    color: #F24A4AFF;
+}
 .music-name{
     font-size: 14px;
 }
@@ -305,8 +331,8 @@ onMounted(() => {
     color: #55D9A2FF;
 }
 .play-pause{
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
     color: #55D9A2FF;
     cursor: pointer;
 }

@@ -21,6 +21,10 @@ public class MusicRecommendApplication implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://127.0.0.1:7070")
                 .allowCredentials(true);
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:7070")
+                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+                .allowCredentials(true);
     }
 
 

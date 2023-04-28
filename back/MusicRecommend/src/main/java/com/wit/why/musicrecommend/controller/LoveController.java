@@ -6,10 +6,7 @@ import com.wit.why.musicrecommend.domain.parm.LoveForm;
 import com.wit.why.musicrecommend.service.ILoveService;
 import com.wit.why.musicrecommend.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -21,7 +18,7 @@ public class LoveController {
     ILoveService iLoveService;
 
     @PostMapping
-    public Response read(@RequestBody LoveForm loveForm) {
+    public Response love(@RequestBody LoveForm loveForm) {
         long time = new Date().getTime();
         time = time / 1000;
         QueryWrapper<Love> qw = new QueryWrapper<>();
@@ -30,5 +27,26 @@ public class LoveController {
         Love love = new Love(loveForm.getUserId(), loveForm.getArtistId(), time);
         iLoveService.save(love);
         return new Response(true,"love success");
+    }
+
+    @GetMapping("{userId}/{artistsId}")
+    public Response isLove(@PathVariable Integer userId, @PathVariable Integer artistsId) {
+        QueryWrapper<Love> qw = new QueryWrapper<>();
+        qw.eq("user_id",userId);
+        qw.eq("artists_id", artistsId);
+        Boolean flag = true;
+        if(iLoveService.count(qw)==0){
+            flag = false;
+        }
+        return new Response(flag,"");
+    }
+
+    @DeleteMapping("{userId}/{artistsId}")
+    public Response notLove(@PathVariable Integer userId, @PathVariable Integer artistsId) {
+        QueryWrapper<Love> qw = new QueryWrapper<>();
+        qw.eq("user_id",userId);
+        qw.eq("artists_id", artistsId);
+        iLoveService.remove(qw);
+        return new Response(true, "不再喜欢");
     }
 }

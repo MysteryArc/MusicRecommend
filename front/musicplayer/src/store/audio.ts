@@ -31,6 +31,9 @@ const useAudioStore = defineStore("audio", {
             })
             await axios.post("/love", readForm)
         },
+        async notlove(user: string | number, artist: string | number) {
+            await axios.delete("/love/" + user + "/" + artist)
+        },
     }
 
 })
