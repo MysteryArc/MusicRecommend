@@ -39,6 +39,10 @@ const useUserStore = defineStore("user", {
             this.userId = ""
             this.recommendId = ""
             this.islogin = false
+            ElMessage({
+                message: '已退出登录',
+                type: 'success',
+            })
         }
     }
 })

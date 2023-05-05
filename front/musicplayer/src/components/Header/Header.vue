@@ -5,10 +5,20 @@ import { Search } from '@element-plus/icons-vue'
 import { UserFilled } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import useUserStore from '../../store/user'
+import { NDropdown, NIcon } from 'naive-ui'
+import { ChevronDownSharp } from '@vicons/ionicons5'
+import { reactive, ref } from 'vue'
 
 const input = ""
 const router = useRouter()
 const userStore = useUserStore()
+
+const options = reactive([
+    {
+        key: "quit",
+        label: "切换账号"
+    }
+])
 
 function gologin() {
     router.push("/login")
@@ -24,6 +34,12 @@ function goprev() {
 
 function goforward() {
     router.forward()
+}
+
+function handleSelect(key: string | number) {
+    if (key == "quit") {
+        userStore.logout()
+    }
 }
 </script>
 
@@ -51,6 +67,11 @@ function goforward() {
             <template v-else>
                 <el-button text type="info" @click="gologin">登录</el-button>
             </template>
+            <n-dropdown trigger="click" :options="options" @select="handleSelect" >
+                <n-icon size="20" class="optionsButton">
+                    <ChevronDownSharp/>
+                </n-icon>
+            </n-dropdown>
         </div>
     </div>
 </template>
@@ -94,5 +115,9 @@ function goforward() {
     display: flex;
     align-items: center;
     margin-right: 5%;
+}
+.optionsButton:hover{
+    cursor: pointer;
+    color: #55D9A2FF;
 }
 </style>
