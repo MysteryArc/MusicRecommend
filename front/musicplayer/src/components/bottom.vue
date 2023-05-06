@@ -307,6 +307,7 @@ onMounted(() => {
     align-items: center;
     margin-left: 40px;
     margin-bottom: 20px;
+    width: 20%;
 }
 .loveButton:hover{
     cursor: pointer;
@@ -324,7 +325,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
-    margin-left: 36%;
+    margin-left: 22%;
 }
 .skipctrl:hover {
     cursor: pointer;
