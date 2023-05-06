@@ -2,12 +2,12 @@ import axios from "../api/request";
 
 function getPopular() {
     return new Promise((reslove,reject) => {
-        axios.get("http://localhost:8087/api/popular").then(async res => {
+        axios.get("http://localhost:8080/api/hot").then(async res => {
             let hotList:IArtists[] = []
             let popularList:IPopular[] = []
-            popularList = res.data
+            popularList = res.data.value
             for (let item of popularList) {
-                let res = await axios.get("artists/id/" + item.Id)
+                let res = await axios.get("artists/id/" + item)
                 hotList.push(res.data)
             }
             reslove(hotList)
