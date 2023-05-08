@@ -47,8 +47,8 @@ function handleSelect(key: string | number) {
     <div class="head" style="display: flex; align-items: center;">
         <div class="head-left">
             <div class="arrowButton">
-                    <el-button :icon="ArrowLeft" size="large" text @click="goprev"/>
-                    <el-button :icon="ArrowRight" size="large" text @click="goforward"/>
+                <el-button :icon="ArrowLeft" size="large" text @click="goprev"/>
+                <el-button :icon="ArrowRight" size="large" text @click="goforward"/>
             </div>
             <div class="search">
                 <el-input

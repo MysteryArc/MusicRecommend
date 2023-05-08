@@ -283,15 +283,15 @@ onMounted(() => {
     height: 3px;
 }
 .circle {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        background-color: #1FC175FF;
-        border-radius: 100%;
-        cursor: pointer;
-        user-select: none;
-        transform: translate(-50%);
-    }
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #1FC175FF;
+    border-radius: 100%;
+    cursor: pointer;
+    user-select: none;
+    transform: translate(-50%);
+}
 .slider-bar{
     height: 3px;
     background-color: #1FC175FF;
