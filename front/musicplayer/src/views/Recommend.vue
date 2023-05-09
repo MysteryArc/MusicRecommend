@@ -13,7 +13,7 @@ const audioStore = useAudioStore()
 
 const hotList = reactive<any>([])
 const recommendList = reactive<any>([])
-let neighborList = reactive<any>([])
+const neighborList = reactive<any>([])
 
 onMounted(() => {
     getPopular().then((res: any) => {
