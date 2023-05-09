@@ -41,7 +41,7 @@ onMounted(() => {
         <div class="recommend-series">
             <div class="series-title">大家都在听</div>
             <div class="card-box">
-                <div v-for="item in hotList.slice(0,6)" :key="item.id" class="recommend-card">
+                <div v-for="item in hotList.slice(0,10)" :key="item.id" class="recommend-card">
                     <Card :item="item"/>
                 </div>
             </div>
@@ -49,7 +49,7 @@ onMounted(() => {
         <div class="recommend-series">
             <div class="series-title">红心歌曲预定</div>
             <div class="card-box" v-if="userStore.islogin==true">
-                <div v-for="item in recommendList.slice(0, 6)" :key="item.id" class="recommend-card">
+                <div v-for="item in recommendList.slice(0, 8)" :key="item.id" class="recommend-card">
                     <Card :item="item"/>
                 </div>
             </div>
@@ -60,7 +60,7 @@ onMounted(() => {
         <div class="recommend-series">
             <div class="series-title">因为你在听{{ audioStore.audioName }}</div>
             <div class="card-box">
-                <div v-for="item in neighborList.slice(0, 6)" :key="item.id" class="recommend-card">
+                <div v-for="item in neighborList.slice(0, 4)" :key="item.id" class="recommend-card">
                     <Card :item="item"/>
                 </div>
             </div>
