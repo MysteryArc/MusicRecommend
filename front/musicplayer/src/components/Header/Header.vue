@@ -39,6 +39,7 @@ function goforward() {
 function handleSelect(key: string | number) {
     if (key == "quit") {
         userStore.logout()
+        router.push("/login")
     }
 }
 </script>

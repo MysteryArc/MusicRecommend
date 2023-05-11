@@ -15,7 +15,7 @@ function routeTo(path:string) {
 
 <template>
     <div class="logo">
-        <el-image src="src\assets\logo.png"/>
+        <el-image src="src\assets\logo3.png"/>
     </div>
     <div class="layout-menulist" v-for="(item, i) in menus" :key="i" tabindex="11">
         <div class="title">{{ item.name }}</div>

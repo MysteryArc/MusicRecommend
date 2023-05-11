@@ -26,16 +26,16 @@ function onReset() {
 </script>
 
 <template>
-    <div class="title">
-        登录
-    </div>
     <div class="form">
+        <div class="title">
+            登录
+        </div>
         <el-form :model="loginForm" class="demo-form-inline">
             <el-form-item label="账号">
-                <el-input v-model="loginForm.loginId" placeholder="loginID" style="width: 400px;"/>
+                <el-input v-model="loginForm.loginId" placeholder="loginID" style="width: 300px;"/>
             </el-form-item>
             <el-form-item label="密码">
-                <el-input v-model="loginForm.password" placeholder="Password" show-password style="width: 400px;"/>
+                <el-input v-model="loginForm.password" placeholder="Password" show-password style="width: 300px;"/>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">登录</el-button>
@@ -50,10 +50,19 @@ div{
     font-family: 'Microsoft YaHei UI', Arial, sans-serif;
 }
 .title{
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
+    margin-left: 40px;
+    margin-bottom: 10px;
 }
 .form{
-    margin-top: 20px;
+    margin-left: 35%;
+    margin-top: 10%;
+    width: 400px;
+    height: 200px;
+    background-color: rgb(240, 240, 240);
+}
+.demo-form-inline{
+    margin-left: 20px;
 }
 </style>

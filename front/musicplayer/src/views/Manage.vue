@@ -74,7 +74,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div>用户管理</div>
+    <h3>用户管理</h3>
     <div class="recently-table">
         <n-data-table :columns="userColumns" :data="userData" :max-height="650" ></n-data-table>
         <n-pagination v-model:page="page" v-model:page-size="pageSize" :item-count="userCount" @update:page="getUserPage(page, pageSize)" />
